@@ -95,15 +95,15 @@
   <Domain>linkedin.com</Domain>
   <DisplayName>LinkedIn</DisplayName>
   <TechnicalProfiles>
-    <TechnicalProfile Id="LinkedIn-OpenIdConnect">
+    <TechnicalProfile Id="LinkedIn-OAuth2">
       <DisplayName>LinkedIn</DisplayName>
-      <Protocol Name="OpenIdConnect" />
+      <Protocol Name="OAuth2" />
       <Metadata>
         <Item Key="ProviderName">linkedin</Item>
         <Item Key="authorization_endpoint">https://www.linkedin.com/oauth/v2/authorization</Item>
         <Item Key="AccessTokenEndpoint">https://www.linkedin.com/oauth/v2/accessToken</Item>
         <Item Key="ClaimsEndpoint">https://api.linkedin.com/v2/me</Item>
-        <Item Key="scope">r_emailaddress r_liteprofile</Item>
+        <Item Key="scope">openid profile email</Item>
         <Item Key="HttpBinding">POST</Item>
         <Item Key="external_user_identity_claim_id">id</Item>
         <Item Key="BearerTokenTransmissionMethod">AuthorizationHeader</Item>
@@ -253,7 +253,7 @@
             <ClaimsExchange Id="GoogleExchange" TechnicalProfileReferenceId="Google-OAuth2" />
             <ClaimsExchange Id="MultiAAD" TechnicalProfileReferenceId="AADCommon-OpenIdConnect" />
             <ClaimsExchange Id="LocalAccountSigninEmailExchange" TechnicalProfileReferenceId="SelfAsserted-LocalAccountSignin-Email" />
-             <ClaimsExchange Id="LinkedInExchange" TechnicalProfileReferenceId="LinkedIn-OpenIdConnect"/>
+             <ClaimsExchange Id="LinkedInExchange" TechnicalProfileReferenceId="LinkedIn-OAuth2"/>
           </ClaimsExchanges>
         </OrchestrationStep>
         <!-- For social IDP authentication, attempt to find the user account in the directory. -->
