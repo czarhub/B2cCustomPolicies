@@ -95,36 +95,29 @@
   <Domain>linkedin.com</Domain>
   <DisplayName>LinkedIn</DisplayName>
   <TechnicalProfiles>
-    <TechnicalProfile Id="LinkedIn-OAuth2">
+    <TechnicalProfile Id="LinkedIn-OpenIdConnect">
       <DisplayName>LinkedIn</DisplayName>
-      <Protocol Name="OAuth2" />
+      <Protocol Name="OpenIdConnect" />
       <Metadata>
-        <Item Key="ProviderName">linkedin</Item>
-        <Item Key="authorization_endpoint">https://www.linkedin.com/oauth/v2/authorization</Item>
-        <Item Key="AccessTokenEndpoint">https://www.linkedin.com/oauth/v2/accessToken</Item>
-        <Item Key="ClaimsEndpoint">https://api.linkedin.com/v2/me</Item>
-        <Item Key="scope">openid profile email</Item>
-        <Item Key="HttpBinding">POST</Item>
-        <Item Key="external_user_identity_claim_id">id</Item>
-        <Item Key="BearerTokenTransmissionMethod">AuthorizationHeader</Item>
-        <Item Key="ResolveJsonPathsInJsonTokens">true</Item>
-        <Item Key="UsePolicyInRedirectUri">false</Item>
-        <Item Key="client_id">77bu23i08jfceg</Item>
+            <Item Key="METADATA">https://www.linkedin.com/oauth/.well-known/openid-configuration</Item>
+            <Item Key="scope">openid profile email</Item>
+            <Item Key="HttpBinding">POST</Item>
+            <Item Key="response_types">code</Item>
+            <Item Key="UsePolicyInRedirectUri">false</Item>
+            <Item Key="client_id">77bu23i08jfceg</Item>
       </Metadata>
       <CryptographicKeys>
         <Key Id="client_secret" StorageReferenceId="B2C_1A_LinkedInSecret" />
       </CryptographicKeys>
       <InputClaims />
       <OutputClaims>
-        <OutputClaim ClaimTypeReferenceId="issuerUserId" PartnerClaimType="id" />
-        <OutputClaim ClaimTypeReferenceId="givenName" PartnerClaimType="firstName.localized" />
-        <OutputClaim ClaimTypeReferenceId="surname" PartnerClaimType="lastName.localized" />
-        <OutputClaim ClaimTypeReferenceId="identityProvider" DefaultValue="linkedin.com" AlwaysUseDefaultValue="true" />
+        <OutputClaim ClaimTypeReferenceId="issuerUserId" PartnerClaimType="email" />
+        <OutputClaim ClaimTypeReferenceId="givenName" PartnerClaimType="given_name" />
+        <OutputClaim ClaimTypeReferenceId="surname" PartnerClaimType="family_name" />
+        <OutputClaim ClaimTypeReferenceId="identityProvider" DefaultValue="linkedin.com"   AlwaysUseDefaultValue="true" />
         <OutputClaim ClaimTypeReferenceId="authenticationSource" DefaultValue="socialIdpAuthentication" AlwaysUseDefaultValue="true" />
       </OutputClaims>
       <OutputClaimsTransformations>
-        <OutputClaimsTransformation ReferenceId="ExtractGivenNameFromLinkedInResponse" />
-        <OutputClaimsTransformation ReferenceId="ExtractSurNameFromLinkedInResponse" />
         <OutputClaimsTransformation ReferenceId="CreateRandomUPNUserName" />
         <OutputClaimsTransformation ReferenceId="CreateUserPrincipalName" />
         <OutputClaimsTransformation ReferenceId="CreateAlternativeSecurityId" />
@@ -253,7 +246,7 @@
             <ClaimsExchange Id="GoogleExchange" TechnicalProfileReferenceId="Google-OAuth2" />
             <ClaimsExchange Id="MultiAAD" TechnicalProfileReferenceId="AADCommon-OpenIdConnect" />
             <ClaimsExchange Id="LocalAccountSigninEmailExchange" TechnicalProfileReferenceId="SelfAsserted-LocalAccountSignin-Email" />
-             <ClaimsExchange Id="LinkedInExchange" TechnicalProfileReferenceId="LinkedIn-OAuth2"/>
+             <ClaimsExchange Id="LinkedInExchange" TechnicalProfileReferenceId="LinkedIn-OpenIdConnect"/>
           </ClaimsExchanges>
         </OrchestrationStep>
         <!-- For social IDP authentication, attempt to find the user account in the directory. -->
