@@ -37,6 +37,8 @@
   </ClaimsTransformations>
  </BuildingBlocks>
 
+ <!-- Facebook as an identity provider -->
+
   <ClaimsProviders>
     <ClaimsProvider>
       <DisplayName>Facebook</DisplayName>
@@ -50,6 +52,9 @@
         </TechnicalProfile>
       </TechnicalProfiles>
     </ClaimsProvider>
+
+<!-- Google as an identity provider -->
+
     <ClaimsProvider>
       <Domain>google.com</Domain>
       <DisplayName>Login with Google</DisplayName>
@@ -91,6 +96,7 @@
       </TechnicalProfiles>
     </ClaimsProvider>
 
+<!--  LinkedIn as an Identity provider  -->
   <ClaimsProvider>
   <Domain>linkedin.com</Domain>
   <DisplayName>LinkedIn</DisplayName>
@@ -126,6 +132,7 @@
       <UseTechnicalProfileForSessionManagement ReferenceId="SM-SocialLogin" />
     </TechnicalProfile>
   </TechnicalProfiles>
+
 </ClaimsProvider>
 
     <ClaimsProvider>
