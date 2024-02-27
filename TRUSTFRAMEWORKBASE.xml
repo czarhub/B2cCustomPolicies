@@ -16,13 +16,6 @@
       <!-- SECTION I: Claims required for user journeys to work properly -->
       <!-- The claim socialIdpUserId has been renamed to issuerUserId -->
 
-      <ClaimType Id="errorMessage">
-        <DisplayName>There was an error</DisplayName>
-        <DataType>string</DataType>
-        <UserHelpText>Add help text here</UserHelpText>
-        <UserInputType>Paragraph</UserInputType>
-      </ClaimType>
-      
       <ClaimType Id="issuerUserId">
         <DisplayName>Username</DisplayName>
         <DataType>string</DataType>
@@ -824,10 +817,6 @@
           <InputClaims>
             <InputClaim ClaimTypeReferenceId="signInName" DefaultValue="{OIDC:LoginHint}" AlwaysUseDefaultValue="true" />
           </InputClaims>
-
-          <DisplayClaims>
-            <DisplayClaim ClaimTypeReferenceId="errorMessage" Required="true" />
-          </DisplayClaims>
           <OutputClaims>
             <OutputClaim ClaimTypeReferenceId="signInName" Required="true" />
             <OutputClaim ClaimTypeReferenceId="password" Required="true" />

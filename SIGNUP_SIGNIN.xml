@@ -4,8 +4,8 @@
       <PolicyId>B2C_1A_TrustFrameworkExtensions</PolicyId>
     </BasePolicy>
     <RelyingParty>
-      <DefaultUserJourney ReferenceId="SignUpOrSignIn" />
-      <!-- <DefaultUserJourney ReferenceId="CustomSignUpSignIn" /> -->
+      <!-- <DefaultUserJourney ReferenceId="SignUpOrSignIn" /> -->
+      <DefaultUserJourney ReferenceId="CustomSignUpSignIn" />
       
       <Endpoints>
         <!--points to refresh token journey when app makes refresh token request-->
