@@ -94,6 +94,40 @@
           <UseTechnicalProfileForSessionManagement ReferenceId="SM-SocialLogin" />
         </TechnicalProfile>
       </TechnicalProfiles>
+
+ <TechnicalProfile Id="Google-OAUTH-Link">
+        <DisplayName>Link Google</DisplayName>
+          <Metadata>
+            <Item Key="ClaimTypeOnWhichToEnable">issuers</Item>
+            <Item Key="ClaimValueOnWhichToEnable">google.com</Item>
+          </Metadata>
+          <OutputClaims>
+            <OutputClaim ClaimTypeReferenceId="issuerUserIdToLink" PartnerClaimType="id" />
+            <OutputClaim ClaimTypeReferenceId="issuerToLink" DefaultValue="google.com" AlwaysUseDefaultValue="true" />
+            <OutputClaim ClaimTypeReferenceId="linkOrUnlink" DefaultValue="link" AlwaysUseDefaultValue="true" />
+          </OutputClaims>
+          <OutputClaimsTransformations>
+              <OutputClaimsTransformation ReferenceId="CreateUserIdentityToLink" />
+              <OutputClaimsTransformation ReferenceId="AppendUserIdentityToLink" />
+          </OutputClaimsTransformations>
+          <IncludeTechnicalProfile ReferenceId="Google-OAUTH-Base" />
+          <UseTechnicalProfileForSessionManagement ReferenceId="SM-Noop" />
+          <EnabledForUserJourneys>OnItemAbsenceInStringCollectionClaim</EnabledForUserJourneys>
+        </TechnicalProfile>
+
+        <TechnicalProfile Id="Google-Unlink">
+          <DisplayName>Unlink Google</DisplayName>
+            <Metadata>
+              <Item Key="ClaimValueOnWhichToEnable">google.com</Item>
+            </Metadata>        
+          <OutputClaims>
+            <OutputClaim ClaimTypeReferenceId="issuerToUnlink" DefaultValue="google.com" AlwaysUseDefaultValue="true" />
+            <OutputClaim ClaimTypeReferenceId="linkOrUnlink" DefaultValue="unlink" AlwaysUseDefaultValue="true" />
+          </OutputClaims>
+          <IncludeTechnicalProfile ReferenceId="SocialAccount-Unlink" />
+        </TechnicalProfile>             
+      </TechnicalProfiles>
+
     </ClaimsProvider>
 
 <!--  LinkedIn as an Identity provider  -->
